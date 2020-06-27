@@ -14,6 +14,8 @@ public class RPS extends javax.swing.JFrame {
      * Creates new form RPS
      */
     int[] score={0,0,0};
+    int round =1;
+    int hideshow =1;
     public RPS() {
         initComponents();
         winField.setText(Integer.toString(score[0]));
@@ -51,11 +53,21 @@ public class RPS extends javax.swing.JFrame {
         PlayerChoose = new javax.swing.JLabel();
         ComputerChoose = new javax.swing.JLabel();
         result = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Log = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        NewGame = new javax.swing.JMenuItem();
+        jCheckBoxShowLog = new javax.swing.JCheckBoxMenuItem();
+        Quit = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rock Paper Scissors by note");
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
         winText.setText("Win :");
 
@@ -181,7 +193,7 @@ public class RPS extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
 
         PlayerText.setText("Player");
 
@@ -203,26 +215,22 @@ public class RPS extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(PlayerChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(87, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(PlayerText)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(ComputerText)))
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(PlayerChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(87, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ComputerChoose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                                .addComponent(ComputerText))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(ComputerChoose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,15 +248,86 @@ public class RPS extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
+
+        Log.setEditable(false);
+        Log.setColumns(20);
+        Log.setRows(5);
+        jScrollPane1.setViewportView(Log);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Log of Fight");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 270, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jMenu1.setText("File");
+
+        NewGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        NewGame.setText("New Game");
+        NewGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewGameActionPerformed(evt);
+            }
+        });
+        jMenu1.add(NewGame);
+
+        jCheckBoxShowLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jCheckBoxShowLog.setSelected(true);
+        jCheckBoxShowLog.setText("Show Log");
+        jCheckBoxShowLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxShowLogActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jCheckBoxShowLog);
+
+        Quit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        Quit.setText("Quit");
+        Quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Quit);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -260,9 +339,11 @@ public class RPS extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -290,16 +371,22 @@ public class RPS extends javax.swing.JFrame {
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Rock25.png")));
             result.setText("DRAW");
             score[2]=score[2]+1;
+            Log.append(round+" Player Rock |DRAW| Computer Rock. \n");
+            round++;
         }else if(comC == 1){
             ComputerChoose.setText("PAPER");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paper25.png")));
             result.setText("WIN");
             score[1]=score[1]+1;
+            Log.append(round+" Player Rock |WIN| Computer Paper. \n");
+            round++;
         }else if(comC == 2){
             ComputerChoose.setText("SCISSORS");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/scissors25.png")));
             result.setText("LOSE");
             score[0]=score[0]+1;
+            Log.append(round+" Player Rock |LOSE| Computer Scissors. \n");
+            round++;
         }
         updateScore();
                 
@@ -315,16 +402,22 @@ public class RPS extends javax.swing.JFrame {
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Rock25.png")));
             result.setText("WIN");
             score[0]=score[0]+1;
+            Log.append(round+" Player Paper |WIN| Computer Rock. \n");
+            round++;
         }else if(comC == 1){
             ComputerChoose.setText("PAPER");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paper25.png")));
             result.setText("DRAW");
             score[2]=score[2]+1;
+            Log.append(round+" Player Paper |DRAW| Computer Paper. \n");
+            round++;
         }else if(comC == 2){
             ComputerChoose.setText("SCISSORS");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/scissors25.png")));
             result.setText("LOSE");
             score[1]=score[1]+1;
+            Log.append(round+" Player Paper |LOSE| Computer Scissors. \n");
+            round++;
         }
         updateScore();
 
@@ -340,16 +433,22 @@ public class RPS extends javax.swing.JFrame {
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Rock25.png")));
             result.setText("LOSE");
             score[1]=score[1]+1;
+            Log.append(round+" Player Scissors |LOSE| Computer Rock. \n");
+            round++;
         }else if(comC == 1){
             ComputerChoose.setText("PAPER");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paper25.png")));
             result.setText("WIN");
             score[0]=score[0]+1;
+            Log.append(round+" Player Scissors |WIN| Computer Paper. \n");
+            round++;
         }else if(comC == 2){
             ComputerChoose.setText("SCISSORS");
             ComputerChoose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/scissors25.png")));
             result.setText("DRAW");
             score[2]=score[2]+1;
+            Log.append(round+" Player Scissors |DRAW| Computer Scissors. \n");
+            round++;
         }
         updateScore();
 
@@ -360,9 +459,34 @@ public class RPS extends javax.swing.JFrame {
         score[0]=0;
         score[1]=0;
         score[2]=0;
+        Log.setText("");
+        round =1;
         updateScore();
         // TODO add your handling code here:
     }//GEN-LAST:event_ResetButtonActionPerformed
+
+    private void jCheckBoxShowLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxShowLogActionPerformed
+        if(hideshow==1){
+        jPanel4.setVisible(false);
+        hideshow=2;
+        }else {
+        jPanel4.setVisible(true);
+        hideshow=1;
+        }
+    }//GEN-LAST:event_jCheckBoxShowLogActionPerformed
+
+    private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
+        score[0]=0;
+        score[1]=0;
+        score[2]=0;
+        Log.setText("");
+        round =1;
+        updateScore();
+    }//GEN-LAST:event_NewGameActionPerformed
+
+    private void QuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QuitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,17 +526,27 @@ public class RPS extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ComputerChoose;
     private javax.swing.JLabel ComputerText;
+    private javax.swing.JTextArea Log;
+    private javax.swing.JMenuItem NewGame;
     private javax.swing.JButton PaperButton;
     private javax.swing.JLabel PlayerChoose;
     private javax.swing.JLabel PlayerText;
+    private javax.swing.JMenuItem Quit;
     private javax.swing.JButton ResetButton;
     private javax.swing.JButton RockButton;
     private javax.swing.JButton ScissorsButton;
     private javax.swing.JTextField drawField;
     private javax.swing.JLabel drawText;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxShowLog;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField loseField;
     private javax.swing.JLabel loseText;
     private javax.swing.JLabel result;
